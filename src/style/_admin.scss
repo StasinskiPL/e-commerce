@@ -1,0 +1,58 @@
+.admin{
+    padding: 3rem 1rem;
+    &-inner{
+        @include maxWidth;
+    }
+    &__title{
+        padding: 1.5rem ;
+        border: 1px solid $color-dark;
+        border-radius: 1rem;
+        h1{
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            @include mediumWidth(){
+                font-size: 2rem;
+            }
+        }
+    }
+
+    &__addForm{
+        margin: 2rem auto;
+        max-width: 800px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        label{
+            font-size: 1.25rem;
+        }
+        input,textarea{
+            font-family: inherit;
+            font-size: 1.5rem;
+            padding: 0.25rem;
+            border-radius: 0.2rem;
+            overflow: hidden;
+            border: 1px solid $color-dark;
+            margin-bottom: 1rem;
+            resize:vertical;
+            width: 100%;
+        }
+        &-btn{
+            background-color: rgb(69, 216, 69);
+            color:$color-white;
+            padding: 0.5rem 2rem;
+            align-self: flex-end;
+            font-family: inherit;
+            font-size: 1.5rem;
+            border: transparent;
+            border-radius: 0.3rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            &:hover,&:focus{
+                color: darken($color-white, 10);
+                background-color: rgb(40, 170, 40);
+
+            }
+        }
+    }
+}
