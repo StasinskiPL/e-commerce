@@ -12,7 +12,7 @@ const ProductInfo:React.FC<ProductProps> = ({product}) => {
                 </div>
                 <div className="productDetails__content">
                     <h1>Price: {price}$</h1>
-                    <h1>Category: <span className="productDetails__content-link"><Link to={`/products//${category}`}>{category}</Link> </span></h1>
+                    <h1>Category: <span className="productDetails__content-link"><Link to={`/products/${category}`}>{category}</Link> </span></h1>
                     <p className="productDetails__content-text">{description}</p>
                 </div>
                 <div className="productDetails__footer">

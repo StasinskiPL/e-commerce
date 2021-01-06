@@ -83,8 +83,21 @@
 .navBottom{
     display: none;
     background-color: darken($color-dark-white, 3);
-    height: 40px;
     @include mediumWidth(){
         display: block;
+    }
+    &-inner{
+        @include maxWidth;
+        display: flex;
+        padding: 0 0.75rem;
+        height: 40px;
+        justify-content: space-between;
+        align-items: center;
+        a{
+            transition:  color 0.3s;
+            &:hover,&:active,&:focus{
+                color:$color-main
+            }
+        }
     }
 }
