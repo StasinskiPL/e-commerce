@@ -1,0 +1,102 @@
+.singleProd {
+    margin-top: 2rem;
+
+    @include mediumWidth() {
+        margin-top: 4rem;
+    }
+
+    &-inner {
+        padding: 1rem 0.5rem;
+        @include maxWidth;
+        display: grid;
+        gap: 2rem;
+
+        @include mediumWidth() {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    &__images-list {
+        height: 95px;
+        background-color: $color-dark-white;
+        display: flex;
+    }
+
+    &__mainImg-wrapper {
+        width: 100%;
+        height: 350px;
+
+        @include mediumWidth() {
+            height: 400px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    &__smallImg-Wrapper {
+        cursor: pointer;
+        border: 1px solid $color-dark;
+        height: 100%;
+
+        img {
+            max-width: 120px;
+            height: 93px;
+        }
+    }
+}
+
+.productDetails {
+    &-inner {
+        padding: 0.5rem;
+        height: 100%;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        min-height: 350px;
+    }
+
+    &__header {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid $color-dark;
+
+        h1 {
+            font-size: 1.75;
+        }
+    }
+
+    &__content {
+        margin-top: 0.5rem;
+
+        &-link {
+            a {
+                color: rgb(13, 13, 190);
+            }
+        }
+
+        &-text {
+            margin-top: 1rem;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+
+        &-btn {
+            background-color: $color-main;
+            border-radius: 0.3rem;
+            color: $color-white;
+            font-size: 1.25rem;
+            padding: 0.5rem 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            &:hover {
+                background-color: darken($color-main, 10);
+            }
+        }
+    }
+}

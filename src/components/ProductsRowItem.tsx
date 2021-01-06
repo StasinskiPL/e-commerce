@@ -1,18 +1,8 @@
 import {Link} from "react-router-dom"
-interface Props{
-    product:{
-        name: string;
-        description: string;
-        category: string;
-        mainImage: string;
-        additionalImages: string[];
-        _id?: string;
-    }
-
-}
+import { ProductProps } from "../types";
 
 
-const ProductsRowItem:React.FC<Props> = ({product})=>{
+const ProductsRowItem:React.FC<ProductProps> = ({product})=>{
     const {mainImage,name, _id} = product;
     return (
         <Link to={`product/${_id}`} className="productRow">
