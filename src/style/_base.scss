@@ -1,62 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 
-
-*,*::after,*::before{
+*,
+*::after,
+*::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-$color-main : #ff4e00;
-$color-dark-white:#f3f3ef;
+$color-main: #ff4e00;
+$color-dark-white: #f3f3ef;
 $color-white: #fff;
 $color-black: #101010;
 $color-dark: #363636;
 
-body{
-    font-family: 'Open Sans', sans-serif;
+body {
+    font-family: "Open Sans", sans-serif;
 }
 
-.main{
+.main {
     display: grid;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
     // overflow: hidden;
 }
-a{
-    color:$color-black;
+
+a {
+    color: $color-black;
     text-decoration: none;
 }
 
-$maxWidth : 1400px;
+$maxWidth: 1400px;
 $mediumWidth: 772px;
 $deskopWidth: 992px;
 
-@mixin maxWidth{
+@mixin maxWidth {
     max-width: $maxWidth;
     margin: 0 auto;
 }
 
 @mixin mediumWidth() {
-    @media screen and (min-width:$mediumWidth){
-          @content;
+    @media screen and (min-width: $mediumWidth) {
+        @content;
     }
 }
+
 @mixin deskopWidth() {
-    @media screen and (min-width:$deskopWidth){
-          @content;
+    @media screen and (min-width: $deskopWidth) {
+        @content;
     }
 }
 
 @mixin mainColorOnHover() {
     transition: color 300ms;
-    &:hover,&:focus,&:active{
+
+    &:hover,
+    &:focus,
+    &:active {
         color: #ff4e00;
     }
-    
 }
-
-
-
-
-

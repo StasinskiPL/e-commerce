@@ -1,0 +1,55 @@
+.productsRow {
+    &__header {
+        color: $color-main;
+        font-size: 2rem;
+    }
+
+    &__context {
+        display: flex;
+        overflow-x: scroll;
+        gap: 1rem;
+        padding: 0.5rem;
+        background-color: #ddd;
+        cursor: -webkit-grab;
+
+        &::-webkit-scrollbar {
+            height: 6px;
+            border-radius: 3px;
+            background: #777476;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            background-color: $color-black;
+        }
+    }
+}
+
+.productRow {
+    flex: 0 0 250px;
+    background-color: white;
+    height: 100%;
+    height: 280px;
+    transition: all 0.2s;
+    border-radius: 0.2rem;
+
+    &:hover {
+        box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    &-imgWrapper {
+        width: 100%;
+        height: 230px;
+        border-bottom: 1px solid $color-dark-white;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &-name {
+        margin-top: 0.75rem;
+        margin-left: 0.5rem;
+    }
+}

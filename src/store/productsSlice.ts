@@ -15,8 +15,14 @@ export const postProducts = createAsyncThunk("product/postProduct",(prod:Product
 })
 
 
+interface State {
+  products: Product[],
+}
 
-const initialState: Product[] = [];
+
+const initialState: State = {
+  products:[],
+};
 
 const productsSlide = createSlice({
   initialState,
@@ -24,7 +30,7 @@ const productsSlide = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.fulfilled, (state, { payload }) => {
-      state.concat(payload.products);
+      state.products.push(...payload.products);
     });
   },
 });
