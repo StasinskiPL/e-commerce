@@ -4,6 +4,7 @@
     &-inner {
         display: flex;
         flex-wrap: wrap;
+        gap: 1rem;
         @include maxWidth;
         height: 100vh;
     }

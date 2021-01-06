@@ -7,7 +7,7 @@ const ProductCard:React.FC<ProductProps> = ({product}) => {
     return (
         <Link to={`/product/${_id}`} className="product">
             <div className="product__img-wrapper">
-                <img src={mainImage} alt={name}/>
+                <img loading="lazy" src={mainImage} alt={name}/>
             </div>
             <div className="product__body">
                 <h3>{name}</h3>

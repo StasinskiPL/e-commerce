@@ -10,6 +10,7 @@
         @include maxWidth;
         display: grid;
         gap: 2rem;
+        width: 100%;
 
         @include mediumWidth() {
             grid-template-columns: 1fr 1fr;
@@ -17,7 +18,7 @@
     }
 
     &__images-list {
-        height: 95px;
+        width: 100%;
         background-color: $color-dark-white;
         display: flex;
     }
@@ -41,10 +42,14 @@
         cursor: pointer;
         border: 1px solid $color-dark;
         height: 100%;
+        width: 100%;
+        flex: 0 1 120px;
 
         img {
+            width: 100%;
             max-width: 120px;
-            height: 93px;
+            height: 85px;
+            object-fit: cover;
         }
     }
 }

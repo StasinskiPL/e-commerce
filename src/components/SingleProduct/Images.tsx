@@ -11,7 +11,7 @@ const Images: React.FC<Props> = ({ mainImage, additionImages }) => {
   return (
     <div>
       <div className="singleProd__mainImg-wrapper">
-        <img src={image} alt="bigImage" />
+        <img loading="lazy" src={image} alt="bigImage" />
       </div>
       <div className="singleProd__images-list">
         <SingleImage image={mainImage} setImage={setImage} />

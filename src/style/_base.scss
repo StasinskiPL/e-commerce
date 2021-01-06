@@ -23,7 +23,6 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
-    // overflow: hidden;
 }
 
 button{
@@ -64,5 +63,13 @@ $deskopWidth: 992px;
     &:focus,
     &:active {
         color: #ff4e00;
+    }
+}
+
+
+.center{
+    margin-top: 13rem;
+    @include mediumWidth(){
+        margin-top: 8rem;
     }
 }

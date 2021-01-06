@@ -1,5 +1,7 @@
 .navbar {
-    &-wrapper{
+    position: fixed;
+    width: 100%;
+    &-wrapper {
         background-color: $color-white;
         padding: 1rem;
         background-color: $color-dark-white;
@@ -42,7 +44,8 @@
         border: transparent;
         cursor: pointer;
         @include mainColorOnHover;
-        svg{
+
+        svg {
             vertical-align: bottom;
         }
     }
@@ -79,24 +82,40 @@
     }
 }
 
-
-.navBottom{
-    display: none;
+.navBottom {
+    margin: 0 auto;
+    width: 100%;
     background-color: darken($color-dark-white, 3);
-    @include mediumWidth(){
+
+    @include mediumWidth() {
         display: block;
     }
-    &-inner{
+
+    &-inner {
         @include maxWidth;
+        width: calc(100vw - 20px);
         display: flex;
-        padding: 0 0.75rem;
-        height: 40px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        gap: 2rem;
+        height: 60px;
         justify-content: space-between;
         align-items: center;
-        a{
-            transition:  color 0.3s;
-            &:hover,&:active,&:focus{
-                color:$color-main
+
+        @include mediumWidth() {
+            gap: 0rem;
+            height: 40px;
+            justify-content: space-around;
+            overflow-x: hidden;
+        }
+
+        a {
+            transition: color 0.3s;
+
+            &:hover,
+            &:active,
+            &:focus {
+                color: $color-main;
             }
         }
     }
