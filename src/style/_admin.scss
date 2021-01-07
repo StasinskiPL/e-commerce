@@ -55,4 +55,35 @@
             }
         }
     }
+    &-error{
+        position: relative;
+        & + input{
+            border: 2px solid rgb(240, 63, 63) !important;
+        }
+        &::after{
+            position: absolute;
+            content: "This field can`t be empty";
+            bottom: -75px;
+            width: 100%;
+            left: 10px;
+            font-size: 1rem;
+            color:rgb(240, 63, 63);
+            animation: showError 0.5s ;
+        }
+        &-textarea{
+            border: 2px solid rgb(240, 63, 63) !important;
+        }
+    }
+    
+}
+
+@keyframes showError{
+    from{
+        bottom:-40px;
+        opacity: 0;
+    }
+    to{
+        bottom: -75px;
+        opacity: 1;
+    }
 }

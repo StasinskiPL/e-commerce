@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 const HomeBanner = () => {
     return (
         <div className="home__banner">
-        <Link to="/">
+        <Link to="/products/all">
             <img src={BannerImg} alt="banner"/>
         </Link>
         </div>

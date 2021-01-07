@@ -1,4 +1,4 @@
-import { useRef, FormEvent } from "react";
+import { useState, useRef, FormEvent } from "react";
 import { postProducts } from "../../store/productsSlice";
 import { useDispatch } from "react-redux";
 import { Product } from "../../types";
@@ -14,23 +14,31 @@ const AddProductForm = () => {
   const additionImages3 = useRef<HTMLInputElement>(null!);
   const price = useRef<HTMLInputElement>(null!);
 
+  const [nameError, setNameError] = useState<boolean>(false);
+  const [descriptionError, setDescriptionError] = useState<boolean>(false);
+  const [imageError, setImageError] = useState<boolean>(false);
+  const [priceError, setPriceError] = useState<boolean>(false);
+
   const dispatch = useDispatch();
 
   const addProductHandler = (e: FormEvent) => {
     e.preventDefault();
     if (
-      name.current.value &&
-      description.current.value &&
+      name.current.value.trim() !== "" &&
+      description.current.value.trim() !== "" &&
       category.current.value &&
-      image.current.value &&
-      price.current.value
+      image.current.value.trim() !== "" &&
+      price.current.value.toString().trim() !== ""
     ) {
       const additionalImages: string[] = [];
-      additionImages1.current.value && additionalImages.push(additionImages1.current.value)
-      additionImages2.current.value && additionalImages.push(additionImages2.current.value)
-      additionImages3.current.value && additionalImages.push(additionImages3.current.value)
-  
-   const prod: Product = {
+      additionImages1.current.value &&
+        additionalImages.push(additionImages1.current.value);
+      additionImages2.current.value &&
+        additionalImages.push(additionImages2.current.value);
+      additionImages3.current.value &&
+        additionalImages.push(additionImages3.current.value);
+
+      const prod: Product = {
         name: name.current.value,
         description: description.current.value,
         category: category.current.value,
@@ -46,21 +54,39 @@ const AddProductForm = () => {
       additionImages1.current.value = "";
       additionImages2.current.value = "";
       additionImages3.current.value = "";
+       setNameError(false);
+      setDescriptionError(false);
+       setPriceError(false);
+       setNameError(false);
     } else {
-      // validation Handler
-      console.log("notWork");
+      name.current.value || setNameError(true);
+      description.current.value ||  setDescriptionError(true);
+      price.current.value || setPriceError(true);
+      image.current.value || setImageError(true);
     }
+    name.current.value || setNameError(true);
+    console.log(name.current.value || "null")
+
   };
+  console.log(nameError)
   return (
     <form className="admin__addForm" onSubmit={(e) => addProductHandler(e)}>
-      <label htmlFor="name">Name:</label>
+      <label className={`${nameError && "admin-error"}`} htmlFor="name">
+        Name:
+      </label>
       <input ref={name} name="name" type="text" />
 
-      <label htmlFor="price">Price:</label>
+      <label className={`${priceError && "admin-error"}`} htmlFor="price">
+        Price:
+      </label>
       <input ref={price} name="price" type="number" step="0.01" />
 
-      <label htmlFor="desc">Description:</label>
-      <textarea ref={description} name="Description" />
+      <label  htmlFor="desc">Description:</label>
+      <textarea
+      className={`${descriptionError && "admin-error-textarea"}`}
+        ref={description}
+        name="Description"
+      />
 
       <label htmlFor="category">Category:</label>
       <select ref={category} name="category">
@@ -71,7 +97,9 @@ const AddProductForm = () => {
         ))}
       </select>
 
-      <label htmlFor="Image">Image(url):</label>
+      <label className={`${imageError && "admin-error"}`} htmlFor="Image">
+        Image(url):
+      </label>
       <input ref={image} name="Image" type="text" />
 
       <label htmlFor="additionalImg">Additional Images:</label>

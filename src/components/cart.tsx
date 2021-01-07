@@ -37,7 +37,7 @@ const Cart = () => {
           <div className="cart__footer">
             <div className="cart__cart__footer-total">
               <h2>
-                Total: <span>{totalPrice} </span>$
+                Total: <span>{totalPrice}</span> $
               </h2>
             </div>
               <button disabled>Checkout</button>
