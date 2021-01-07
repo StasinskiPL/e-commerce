@@ -19,8 +19,10 @@
 
     &__images-list {
         width: 100%;
+        margin-top: 0.5rem;
         background-color: $color-dark-white;
         display: flex;
+        
     }
 
     &__mainImg-wrapper {
@@ -82,7 +84,7 @@
         }
 
         &-text {
-            margin-top: 1rem;
+            margin: 1rem 0;
         }
     }
 

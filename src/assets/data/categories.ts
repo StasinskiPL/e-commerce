@@ -1,6 +1,7 @@
 type CategoriesType = string[];
 
 const categories:CategoriesType =[
+    "All",
     "Electronic",
     "Clothes",
     "Books",

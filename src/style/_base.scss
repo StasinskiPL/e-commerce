@@ -14,7 +14,6 @@ $color-white: #fff;
 $color-black: #101010;
 $color-dark: #363636;
 
-
 body {
     font-family: "Open Sans", sans-serif;
 }
@@ -25,7 +24,7 @@ body {
     min-height: 100vh;
 }
 
-button{
+button {
     font-family: inherit;
     border: transparent;
 }
@@ -66,10 +65,10 @@ $deskopWidth: 992px;
     }
 }
 
-
-.center{
+.center {
     margin-top: 13rem;
-    @include mediumWidth(){
+
+    @include mediumWidth() {
         margin-top: 8rem;
     }
 }

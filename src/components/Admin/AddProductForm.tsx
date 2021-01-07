@@ -42,6 +42,7 @@ const AddProductForm = () => {
       name.current.value = "";
       description.current.value = "";
       image.current.value = "";
+      price.current.value = "";
       additionImages1.current.value = "";
       additionImages2.current.value = "";
       additionImages3.current.value = "";
@@ -56,7 +57,7 @@ const AddProductForm = () => {
       <input ref={name} name="name" type="text" />
 
       <label htmlFor="price">Price:</label>
-      <input ref={price} name="price" type="number" />
+      <input ref={price} name="price" type="number" step="0.01" />
 
       <label htmlFor="desc">Description:</label>
       <textarea ref={description} name="Description" />

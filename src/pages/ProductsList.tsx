@@ -4,6 +4,7 @@ import { useParams} from 'react-router-dom'
 import { Product } from '../types'
 import {RootState} from "../store/store";
 import ProductCard from '../components/ProductCard';
+import ProductsListHeader from '../components/ProductsListHeader';
 
 interface Category{
     category: string;
@@ -16,12 +17,18 @@ const ProductsList = () => {
 
     useEffect(()=>{
         if(allProduct !== []){
-            setProducts(allProduct.filter(prod=> prod.category === category))
+            if(category !== "All"){
+                setProducts(allProduct.filter(prod=> prod.category === category))
+            }else{
+                setProducts(allProduct)
+            }
         }
     },[allProduct,category])
 
     return (
         <section className="products">
+            <ProductsListHeader allProduct={allProduct} setProducts={setProducts}/>
+            
             <div className="products-inner">
                 {products.map((prod,index)=><ProductCard product={prod} key={index}/>)}
 
