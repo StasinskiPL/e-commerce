@@ -1,14 +1,15 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import {Link} from "react-router-dom"; 
+import Loading from "../Loading";
 
 const DailySale = () => {
   const product = useSelector((state: RootState) => state.products.products[0]);
 
   if (!product) {
     return (
-      <article className="home__daily">
-        <h1>loading</h1>
+      <article className="home__daily home__daily-Loading">
+        <Loading/>
       </article>
     );
   }

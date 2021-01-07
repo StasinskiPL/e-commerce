@@ -23,6 +23,9 @@ body {
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 }
+.center{
+  min-height: 100vh;
+}
 
 button {
   font-family: inherit;

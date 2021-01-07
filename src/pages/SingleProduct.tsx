@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Loading from "../components/Loading";
 import Images from "../components/SingleProduct/Images";
 import ProductInfo from "../components/SingleProduct/ProductInfo";
 import { Product } from "../types";
@@ -34,10 +35,8 @@ const SingleProduct = () => {
 
     if (loading) {
         return (
-            <section className="singleProd">
-                <div className="singleProd-inner">
-                    <h1>Loading...</h1>
-                </div>
+            <section className="singleProd singleProd-loading">
+                    <Loading/>
             </section>
         );
     }

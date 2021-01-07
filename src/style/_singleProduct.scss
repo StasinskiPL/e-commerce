@@ -1,8 +1,13 @@
 .singleProd {
     margin-top: 2rem;
 
+
     @include mediumWidth() {
         margin-top: 4rem;
+    }
+    &-loading{
+        width: 100%;
+        height: 100%;
     }
 
     &-inner {

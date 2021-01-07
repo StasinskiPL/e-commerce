@@ -58,6 +58,10 @@
         opacity: 1;
       }
     }
+    &-loading{
+      display: grid;
+      place-items: center;
+    }
 
     &-title {
       padding: 0.5rem;

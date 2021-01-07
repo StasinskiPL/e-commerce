@@ -24,7 +24,6 @@
                 margin-left: 0.5rem;
             }
         }
-
     }
 
     &-inner {
@@ -33,6 +32,12 @@
         gap: 1rem;
         @include maxWidth;
         margin-top: 2rem;
+
+        &-noMatch {
+            margin-top: 2rem;
+            width: 100%;
+            text-align: center;
+        }
     }
 }
 

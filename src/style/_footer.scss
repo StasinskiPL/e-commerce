@@ -1,6 +1,6 @@
 .footer{
-    min-height: 30vh;
-    margin-top: 7rem;
+    min-height: 300px;
+    margin-top: 5rem;
     background-color: $color-dark-white;
     &__inner{
         @include maxWidth;
