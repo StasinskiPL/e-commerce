@@ -1,5 +1,5 @@
 import {useState,useEffect} from 'react'
-import { Product } from '../types'
+import { Product } from '../../types'
 
 enum Sort{recommened,priceUp,priceDown,alphabetical}
 

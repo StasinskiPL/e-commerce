@@ -1,6 +1,8 @@
 .navbar {
     position: fixed;
     width: 100%;
+    z-index: 2;
+
     &-wrapper {
         background-color: $color-white;
         padding: 1rem;
@@ -44,6 +46,22 @@
         border: transparent;
         cursor: pointer;
         @include mainColorOnHover;
+
+        &-cart {
+            position: relative;
+            &-amount{
+                $side: 25px;
+                position: absolute;
+                height: $side;
+                width: $side;
+                bottom: -10px;
+                right: -5px;
+                background-color: $color-main;
+                border-radius: $side / 2;
+                color: white;
+                font-size: 1rem;
+            }
+        }
 
         svg {
             vertical-align: bottom;
@@ -95,7 +113,7 @@
         @include maxWidth;
         width: calc(100vw - 20px);
         display: flex;
-    padding: 0 1rem;
+        padding: 0 1rem;
 
         overflow-x: scroll;
         overflow-y: hidden;

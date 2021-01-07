@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { VscAccount } from "react-icons/vsc";
-import { AiFillShopping } from "react-icons/ai";
 import SearchInput from "./SearchInput";
 import NavbarBottom from "./NavbarBottom";
+import NavIcons from "./NavIcons";
 
 const Navbar = () => {
+
   return (
     <nav className="navbar">
       <div className="navbar-wrapper">
@@ -15,14 +15,7 @@ const Navbar = () => {
               Home
             </Link>
           </div>
-          <div className="navbar-icons">
-            <button className="navbar-icon">
-              <VscAccount />
-            </button>
-            <button className="navbar-icon">
-              <AiFillShopping />
-            </button>
-          </div>
+           <NavIcons/>
           <SearchInput />
         </div>
       </div>

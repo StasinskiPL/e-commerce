@@ -1,5 +1,5 @@
 import React from 'react'
-import { Product } from '../types'
+import { Product } from '../../types'
 import ProductsRowItem from './ProductsRowItem'
 
 interface Props{
@@ -15,7 +15,9 @@ const ProductsRow:React.FC<Props> = ({products, title}) => {
             <h1>{title}</h1>
         </div>
         <div className="productsRow__context">
+        <div className="productsRow__context-inner">
             {products.map((prod,index)=><ProductsRowItem product={prod} key={index}/>)}
+        </div>
         </div>
         </article>
     )

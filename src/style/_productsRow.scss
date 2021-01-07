@@ -1,18 +1,26 @@
 .productsRow {
+    overflow: hidden;
+
     &__header {
         color: $color-main;
         font-size: 2rem;
     }
 
     &__context {
+        overflow: hidden;
+    }
+
+    &__context-inner {
+        width: 100%;
         display: flex;
-        overflow-x: scroll;
         gap: 1rem;
+        overflow-x: scroll;
         padding: 0.5rem;
         background-color: #ddd;
         cursor: -webkit-grab;
 
         &::-webkit-scrollbar {
+            width: 0px;
             height: 8px;
             border-radius: 4px;
             background: #777476;
@@ -26,24 +34,37 @@
 }
 
 .productRow {
-    flex: 0 0 250px;
     background-color: white;
+    width: 100%;
     height: 100%;
     height: 280px;
     transition: all 0.2s;
     border-radius: 0.2rem;
+
+    &:last-child {
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -8px;
+            height: 100%;
+            width: 8px;
+            background-color: transparent;
+        }
+    }
 
     &:hover {
         box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.2);
     }
 
     &-imgWrapper {
-        width: 100%;
         height: 230px;
         border-bottom: 1px solid $color-dark-white;
 
         img {
-            width: 100%;
+            width: 250px;
             height: 100%;
         }
     }

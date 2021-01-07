@@ -1,5 +1,6 @@
 import {lazy,Suspense, useEffect} from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
+import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home";
@@ -17,8 +18,9 @@ function App() {
   },[pathname])
   return (
     <main className="main">
-      <Suspense fallback="loading...">
       <Navbar />
+      <Cart/>
+      <Suspense fallback="loading...">
       <div className="center">
       <Switch>
         <Route path="/" exact render={() => <Home />} />

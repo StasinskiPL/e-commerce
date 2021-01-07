@@ -1,5 +1,6 @@
 .home {
   padding: 1.5rem 0.5rem;
+  
 
   @include mediumWidth() {
     padding: 3.5rem 0.5rem;
@@ -7,6 +8,8 @@
 
   &-inner {
     @include maxWidth;
+    width: calc(100vw - 2.25rem );
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -23,6 +26,7 @@
 
   &__banner {
     height: 500px;
+    width: 100%;
     background-color: #999;
 
     img {

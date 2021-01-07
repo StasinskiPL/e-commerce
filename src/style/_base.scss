@@ -3,9 +3,9 @@
 *,
 *::after,
 *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 $color-main: #ff4e00;
@@ -15,60 +15,67 @@ $color-black: #101010;
 $color-dark: #363636;
 
 body {
-    font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .main {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
 }
 
 button {
-    font-family: inherit;
-    border: transparent;
+  font-family: inherit;
+  border: transparent;
 }
 
 a {
-    color: $color-black;
-    text-decoration: none;
+  color: $color-black;
+  text-decoration: none;
 }
 
 $maxWidth: 1400px;
+$tableWidth: 500px;
 $mediumWidth: 772px;
 $deskopWidth: 992px;
 
 @mixin maxWidth {
-    max-width: $maxWidth;
-    margin: 0 auto;
+  max-width: $maxWidth;
+  margin: 0 auto;
+}
+
+@mixin tableWidth() {
+  @media screen and (min-width: $tableWidth) {
+    @content;
+  }
 }
 
 @mixin mediumWidth() {
-    @media screen and (min-width: $mediumWidth) {
-        @content;
-    }
+  @media screen and (min-width: $mediumWidth) {
+    @content;
+  }
 }
 
 @mixin deskopWidth() {
-    @media screen and (min-width: $deskopWidth) {
-        @content;
-    }
+  @media screen and (min-width: $deskopWidth) {
+    @content;
+  }
 }
 
 @mixin mainColorOnHover() {
-    transition: color 300ms;
+  transition: color 300ms;
 
-    &:hover,
-    &:focus,
-    &:active {
-        color: #ff4e00;
-    }
+  &:hover,
+  &:focus,
+  &:active {
+    color: #ff4e00;
+  }
 }
 
 .center {
-    margin-top: 13rem;
+  margin-top: 13rem;
 
-    @include mediumWidth() {
-        margin-top: 8rem;
-    }
+  @include mediumWidth() {
+    margin-top: 8rem;
+  }
 }

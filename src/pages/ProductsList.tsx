@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import { useParams} from 'react-router-dom'
 import { Product } from '../types'
 import {RootState} from "../store/store";
-import ProductCard from '../components/ProductCard';
-import ProductsListHeader from '../components/ProductsListHeader';
+import ProductCard from '../components/Products/ProductCard';
+import ProductsListHeader from '../components/Products/ProductsListHeader';
 
 interface Category{
     category: string;
