@@ -54,21 +54,20 @@ const AddProductForm = () => {
       additionImages1.current.value = "";
       additionImages2.current.value = "";
       additionImages3.current.value = "";
-       setNameError(false);
+      setNameError(false);
       setDescriptionError(false);
-       setPriceError(false);
-       setNameError(false);
+      setPriceError(false);
+      setNameError(false);
     } else {
       name.current.value || setNameError(true);
-      description.current.value ||  setDescriptionError(true);
+      description.current.value || setDescriptionError(true);
       price.current.value || setPriceError(true);
       image.current.value || setImageError(true);
     }
     name.current.value || setNameError(true);
-    console.log(name.current.value || "null")
-
+    console.log(name.current.value || "null");
   };
-  console.log(nameError)
+  console.log(nameError);
   return (
     <form className="admin__addForm" onSubmit={(e) => addProductHandler(e)}>
       <label className={`${nameError && "admin-error"}`} htmlFor="name">
@@ -81,16 +80,16 @@ const AddProductForm = () => {
       </label>
       <input ref={price} name="price" type="number" step="0.01" />
 
-      <label  htmlFor="desc">Description:</label>
+      <label htmlFor="desc">Description:</label>
       <textarea
-      className={`${descriptionError && "admin-error-textarea"}`}
+        className={`${descriptionError && "admin-error-textarea"}`}
         ref={description}
         name="Description"
       />
 
       <label htmlFor="category">Category:</label>
       <select ref={category} name="category">
-        {categories.map((catgr, index) => (
+        {categories.slice(1).map((catgr, index) => (
           <option key={index} value={catgr}>
             {catgr}
           </option>

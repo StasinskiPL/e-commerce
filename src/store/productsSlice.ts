@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {Product} from "../types";
+import { Product } from "../types";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
@@ -10,18 +10,19 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
-export const postProducts = createAsyncThunk("product/postProduct",(prod:Product)=>{
-    axios.post("http://ds-ecommers.herokuapp.com/addproduct",{...prod})
-})
-
+export const postProducts = createAsyncThunk(
+  "product/postProduct",
+  (prod: Product) => {
+    axios.post("http://ds-ecommers.herokuapp.com/addproduct", { ...prod });
+  }
+);
 
 interface State {
-  products: Product[],
+  products: Product[];
 }
 
-
 const initialState: State = {
-  products:[],
+  products: [],
 };
 
 const productsSlide = createSlice({

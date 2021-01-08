@@ -1,0 +1,115 @@
+.login {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+
+    &-wrapper {
+        height: 500px;
+        width: 100%;
+        max-width: 600px;
+        background-color: $color-white;
+        border-radius: 0.3rem;
+        overflow: hidden;
+    }
+
+    &-inner {
+        height: 100%;
+        padding-bottom: 1rem;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+    }
+
+    &__header {
+        padding: 1rem;
+        background-color: $color-dark-white;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+            font-size: 2rem;
+            transition: color 0.3s;
+            cursor: pointer;
+            background-color: transparent;
+            color: $color-black;
+
+            &:hover,
+            &:focus {
+                color: lighten(#000000, 50);
+            }
+
+            svg {
+                vertical-align: middle;
+            }
+        }
+    }
+
+    &__body {
+        padding: 1rem;
+
+        &-error {
+            min-height: 50px;
+            padding: 0.125rem;
+            background-color: rgb(235, 96, 96);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        &-form {
+            display: flex;
+            flex-direction: column;
+            padding: 0.25rem;
+
+            input {
+                margin-bottom: 2rem;
+                width: 100%;
+                font-size: 1.75rem;
+                border-radius: 0.2rem;
+                border: 1px solid rgba(#000, 0.5);
+
+                @include mediumWidth() {
+                    font-size: 2rem;
+
+                    &:last-of-type {
+                        margin-bottom: 4rem;
+                    }
+                }
+            }
+        }
+
+        &-btn {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1.25rem;
+            align-self: flex-end;
+            width: 150px;
+            background-color: $color-main;
+            color: white;
+            transition: all 0.3s;
+
+            &:hover {
+                background-color: darken($color-main, 10);
+            }
+        }
+    }
+
+    &__footer {
+        &-text {
+            text-align: center;
+        }
+
+        &-toggle {
+            margin-left: 0.5rem;
+            cursor: pointer;
+            color: rgb(13, 13, 190);
+        }
+    }
+}

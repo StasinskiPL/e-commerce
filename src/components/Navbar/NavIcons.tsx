@@ -2,6 +2,7 @@ import { VscAccount } from "react-icons/vsc";
 import { AiFillShopping } from "react-icons/ai";
 import { useDispatch,useSelector } from "react-redux";
 import {toogleShowCart} from "../../store/cartSlice";
+import {toogleLoginModal} from "../../store/loginSlice";
 import {RootState} from "../../store/store"
 
 
@@ -17,7 +18,7 @@ const NavIcons = () => {
     }
     return (
         <div className="navbar-icons">
-        <button className="navbar-icon">
+        <button onClick={()=>dispatch(toogleLoginModal())}  className="navbar-icon">
           <VscAccount />
         </button>
         <button className="navbar-icon navbar-icon-cart" onClick={()=>dispatch(toogleShowCart())}>
