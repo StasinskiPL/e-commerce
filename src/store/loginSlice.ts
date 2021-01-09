@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,PayloadAction} from "@reduxjs/toolkit";
+import axios from "axios";
 
 export enum UserStatur {
     Admin = "ADMIN",
@@ -22,6 +23,7 @@ const initialState: InitialStateInterface = {
     showLoginModal: false,
 };
 
+
 const loginSlice = createSlice({
     name: "user",
     initialState,
@@ -29,9 +31,15 @@ const loginSlice = createSlice({
         toogleLoginModal: (state) => {
             state.showLoginModal = !state.showLoginModal;
         },
+        connectUserWithDB: (state,{payload}:PayloadAction<{id:string}>)=>{
+            axios.post("http://ds-ecommers.herokuapp.com/connectUser",{
+                id:payload.id
+            })
+            return state;
+        }
     },
 });
 
-export const { toogleLoginModal } = loginSlice.actions;
+export const { toogleLoginModal,connectUserWithDB } = loginSlice.actions;
 
 export default loginSlice.reducer;

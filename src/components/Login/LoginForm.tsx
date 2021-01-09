@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { auth } from "../../firebase";
-import { toogleLoginModal } from "../../store/loginSlice";
+import { toogleLoginModal,connectUserWithDB } from "../../store/loginSlice";
 import Loading from "../Loading";
 import { LoginType } from "./LoginModal";
 
@@ -34,8 +34,11 @@ const LoginForm: React.FC<Props> = ({ text, type }) => {
         auth.createUserWithEmailAndPassword(
             emailRef.current.value,
             passwordRef.current.value.replaceAll(" ", "")
-          ).then(() => {
+          ).then((user) => {
             history.push("/account");
+            if(user.user){
+              dispatch(connectUserWithDB({id:user.user.uid}))
+            }
             dispatch(toogleLoginModal());
           }).catch((err) => {
             if (err.code === "auth/email-already-in-use") {

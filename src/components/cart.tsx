@@ -1,8 +1,9 @@
 import { useState, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
-import { toogleShowCart } from "../store/cartSlice";
+import { toogleShowCart} from "../store/cartSlice";
 import CartItem from "./CartItem";
+import CartPurchaseBtn from "./CartPurchaseBtn";
 
 const Cart = () => {
   const [totalPrice, setTotalprice] = useState<number>(0);
@@ -10,7 +11,6 @@ const Cart = () => {
   const products = useSelector((state: RootState) => state.cart.cartProducts);
   const dispatch = useDispatch();
 
- 
   useEffect(() => {
     const total = products.reduce((total, next) => (total += next.total), 0);
     setTotalprice(+total.toFixed(2));
@@ -19,6 +19,7 @@ const Cart = () => {
   if (!showCart) {
     return null;
   }
+
 
   return (
     <div className="cart" onClick={()=>dispatch(toogleShowCart())}>
@@ -40,7 +41,7 @@ const Cart = () => {
                 Total: <span>{totalPrice}</span> $
               </h2>
             </div>
-              <button disabled>Checkout</button>
+             <CartPurchaseBtn/>
           </div>
         </div>
       </div>

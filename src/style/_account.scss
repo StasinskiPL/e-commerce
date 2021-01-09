@@ -1,22 +1,141 @@
-.account{
-    padding: 2rem 1.5rem;
-    &-inner{
-        @include maxWidth();
-        @include mediumWidth(){
-            margin-top: 3rem;
-        }
+.account {
+  padding: 2rem 0.75rem;
+
+  &-inner {
+    @include maxWidth();
+
+    @include mediumWidth() {
+      margin-top: 3rem;
     }
-    &__header{
-        &-btn{
-            padding: 0.5rem 1.5rem;
-            border-radius: 0.3rem;
-            background-color: rgb(233, 90, 90);
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s;
-            &:hover{
-                background-color: rgb(197, 25, 25);
-            }
-        }
+  }
+
+  &__header {
+    &-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 0.3rem;
+      background-color: rgb(233, 90, 90);
+      color: white;
+      font-size: 1.5rem;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: rgb(197, 25, 25);
+      }
     }
+  }
+
+  &__body {
+    margin-top: 5rem;
+  }
+
+  &__transations {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &-title {
+      display: flex;
+      gap: 1rem;
+      font-size: 2.5rem;
+      button {
+        font-size: 2.5rem;
+        transition: color 0.3s;
+        svg {
+          vertical-align: bottom;
+        }
+
+        &:hover {
+          color: lighten(#000, 50);
+        }
+      }
+    }
+  }
+}
+
+.transation {
+  background-color: $color-dark-white;
+  border-radius: 0.3rem;
+
+  &-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  &-btn {
+    font-size: 1.5rem;
+    transition: color 0.3s;
+    transition: transform 0.5s;
+    &.showTable {
+      transform: rotateZ(-180deg);
+    }
+
+    &:hover {
+      color: lighten(#000, 30);
+    }
+  }
+
+  &-date {
+    flex-grow: 1;
+    text-align: center;
+  }
+  &__table-wrapper {
+    display: none;
+    &.showTable {
+      display: initial;
+    }
+  }
+
+  table {
+    border-top: 1px solid rgba(#000, 0.5);
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    border: 1px solid #000;
+
+    @include mediumWidth() {
+      font-size: 1.25rem;
+    }
+
+    thead {
+      tr {
+        background-color: darken($color-dark-white, 14);
+      }
+    }
+
+    tr {
+      width: 100%;
+      display: flex;
+
+      &:nth-of-type(even) {
+        background-color: darken($color-dark-white, 14);
+      }
+
+      th,
+      td {
+        padding: 0.25rem;
+        flex-basis: 80px;
+        border: 1px solid #000;
+        text-align: center;
+
+        @include mediumWidth() {
+          flex-basis: 100px;
+        }
+
+        &:first-child {
+          flex-grow: 1;
+        }
+      }
+
+      td {
+        &:first-child {
+          text-align: start;
+          a {
+            color: rgb(1, 1, 125);
+          }
+        }
+      }
+    }
+  }
 }
