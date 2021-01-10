@@ -29,7 +29,7 @@ const Account = () => {
       history.push("/");
     } else {
       axios
-        .get("http://ds-ecommers.herokuapp.com/getuserstore", {
+        .get("https://ds-ecommers.herokuapp.com/getuserstore", {
           params: {
             id: user.uid,
           },
