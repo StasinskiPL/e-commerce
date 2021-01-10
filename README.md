@@ -1,9 +1,9 @@
 STACK:
--react
--redux
--typeScript
--Scss
--Firebase Authentication
+- react
+- redux
+- typeScript
+- Scss
+- Firebase Authentication
 - nodejs
 - mongoDB
 
