@@ -7,3 +7,6 @@ STACK:
 - nodejs
 - mongoDB
 
+
+backend:
+https://github.com/StasinskiPL/e-commerce-backend
