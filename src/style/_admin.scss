@@ -1,45 +1,55 @@
-.admin{
+.admin {
     padding: 3rem 1rem;
-    &-inner{
+
+    &-inner {
         @include maxWidth;
     }
-    &__title{
-        padding: 1.5rem ;
+
+    &__title {
+        padding: 1.5rem;
         border: 1px solid $color-dark;
         border-radius: 1rem;
-        h1{
+
+        h1 {
             text-align: center;
             text-transform: uppercase;
             font-size: 1.5rem;
-            @include mediumWidth(){
+
+            @include mediumWidth() {
                 font-size: 2rem;
             }
         }
     }
 
-    &__addForm{
+    &__addForm {
         margin: 2rem auto;
         max-width: 800px;
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        label{
+
+        label {
             font-size: 1.25rem;
         }
-        input,textarea,option,select{
+
+        input,
+        textarea,
+        option,
+        select {
             font-family: inherit;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             padding: 0.25rem;
             border-radius: 0.2rem;
             overflow: hidden;
             border: 1px solid $color-dark;
             margin-bottom: 1rem;
-            resize:vertical;
+            resize: vertical;
             width: 100%;
         }
-        &-btn{
+
+        &-btn {
             background-color: rgb(69, 216, 69);
-            color:$color-white;
+            color: $color-white;
             padding: 0.5rem 2rem;
             align-self: flex-end;
             font-family: inherit;
@@ -48,41 +58,51 @@
             border-radius: 0.3rem;
             transition: all 0.3s;
             cursor: pointer;
-            &:hover,&:focus{
+
+            &:hover,
+            &:focus {
                 color: darken($color-white, 10);
                 background-color: rgb(40, 170, 40);
+            }
 
+            &:disabled {
+                cursor: not-allowed;
             }
         }
     }
-    &-error{
+
+    &-error {
         position: relative;
-        & + input{
+
+        &+input {
             border: 2px solid rgb(240, 63, 63) !important;
         }
-        &::after{
+
+        &::after {
             position: absolute;
             content: "This field can`t be empty";
             bottom: -75px;
             width: 100%;
             left: 10px;
             font-size: 1rem;
-            color:rgb(240, 63, 63);
-            animation: showError 0.5s ;
+            color: rgb(240, 63, 63);
+            animation: showError 0.5s;
         }
-        &-textarea{
+
+        &-textarea {
             border: 2px solid rgb(240, 63, 63) !important;
         }
     }
-    
+
 }
 
-@keyframes showError{
-    from{
-        bottom:-40px;
+@keyframes showError {
+    from {
+        bottom: -40px;
         opacity: 0;
     }
-    to{
+
+    to {
         bottom: -75px;
         opacity: 1;
     }

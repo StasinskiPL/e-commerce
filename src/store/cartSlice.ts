@@ -22,7 +22,7 @@ export const postTransation = createAsyncThunk(
   "cart/postTransation",
   async (id: string, { getState }) => {
     const { cart } = getState() as { cart: { cartProducts: CartProducts[] } };
-    axios.post("http://ds-ecommers.herokuapp.com/addtransation",{
+    axios.post("http://ds-ecommers.herokuapp.com/addtransation", {
       id: id,
       transation: cart.cartProducts.map((item) => ({
         name: item.product.name,

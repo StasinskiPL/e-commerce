@@ -6,38 +6,13 @@ import { FaTimes } from "react-icons/fa";
 import LoginForm from "./LoginForm";
 import { auth } from "../../firebase";
 import { useHistory } from "react-router-dom";
-import { motion } from "framer-motion"
-
-export enum LoginType {
-  login,
-  registration,
-}
-
-export interface LoginModalText {
-  header: string;
-  body: string;
-  footer: {
-    text: string;
-    toggle: string;
-  };
-}
-
-const loginText: LoginModalText = {
-  header: "Sign In",
-  body: "sign in",
-  footer: {
-    text: "Don't have an account?",
-    toggle: "Sing Up",
-  },
-};
-const registrationText: LoginModalText = {
-  header: "Sign Up",
-  body: "sign Up",
-  footer: {
-    text: "Have an account?",
-    toggle: "Sing In",
-  },
-};
+import { motion } from "framer-motion";
+import {
+  LoginModalText,
+  LoginType,
+  loginText,
+  registrationText,
+} from "./loginData";
 
 const LoginModal = () => {
   const showModal = useSelector(
@@ -81,14 +56,17 @@ const LoginModal = () => {
   }
 
   return (
-    <motion.div className="login"
-    initial={{opacity:0}}
-    animate={{opacity:1}}
+    <motion.div
+      className="login"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
     >
-      <motion.div className="login-wrapper"
-      initial={{y:-70,opacity:0}}
-      animate={{y:0,opacity:1}}
-       transition={{ease:"easeInOut",duration:0.3}}>
+      <motion.div
+        className="login-wrapper"
+        initial={{ y: -70, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ ease: "easeInOut", duration: 0.3 }}
+      >
         <div className="login-inner">
           {/* header */}
           <div className="login__header">

@@ -37,9 +37,11 @@
       display: flex;
       gap: 1rem;
       font-size: 2.5rem;
+
       button {
         font-size: 2.5rem;
         transition: color 0.3s;
+
         svg {
           vertical-align: bottom;
         }
@@ -67,6 +69,7 @@
     font-size: 1.5rem;
     transition: color 0.3s;
     transition: transform 0.5s;
+
     &.showTable {
       transform: rotateZ(-180deg);
     }
@@ -80,8 +83,10 @@
     flex-grow: 1;
     text-align: center;
   }
+
   &__table-wrapper {
     display: none;
+
     &.showTable {
       display: initial;
     }
@@ -131,6 +136,7 @@
       td {
         &:first-child {
           text-align: start;
+
           a {
             color: rgb(1, 1, 125);
           }

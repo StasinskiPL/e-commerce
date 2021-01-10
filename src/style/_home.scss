@@ -1,6 +1,6 @@
 .home {
   padding: 1.5rem 0.5rem;
-  
+
 
   @include mediumWidth() {
     padding: 3.5rem 0.5rem;
@@ -8,7 +8,7 @@
 
   &-inner {
     @include maxWidth;
-    width: calc(100vw - 2.25rem );
+    width: calc(100vw - 2.25rem);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -58,7 +58,8 @@
         opacity: 1;
       }
     }
-    &-loading{
+
+    &-loading {
       display: grid;
       place-items: center;
     }

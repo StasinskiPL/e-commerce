@@ -49,7 +49,8 @@
 
         &-cart {
             position: relative;
-            &-amount{
+
+            &-amount {
                 $side: 25px;
                 position: absolute;
                 height: $side;

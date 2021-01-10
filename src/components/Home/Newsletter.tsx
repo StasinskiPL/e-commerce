@@ -5,8 +5,7 @@ const Newsletter = () => {
             <div className="home__newsletter-inner">
                 <Link to="/">
                     <h1>NEWSLETTER</h1>
-                </Link>
-                
+                </Link>            
             </div>
         </article>
     )

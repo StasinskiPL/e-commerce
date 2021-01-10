@@ -2,9 +2,9 @@ import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { auth } from "../../firebase";
-import { toogleLoginModal,connectUserWithDB } from "../../store/loginSlice";
+import { toogleLoginModal, connectUserWithDB } from "../../store/loginSlice";
 import Loading from "../Loading";
-import { LoginType } from "./LoginModal";
+import { LoginType } from "./loginData";
 
 interface Props {
   text: string;
@@ -31,16 +31,19 @@ const LoginForm: React.FC<Props> = ({ text, type }) => {
       setLoading(false);
     } else {
       if (type === LoginType.registration) {
-        auth.createUserWithEmailAndPassword(
+        auth
+          .createUserWithEmailAndPassword(
             emailRef.current.value,
             passwordRef.current.value.replaceAll(" ", "")
-          ).then((user) => {
+          )
+          .then((user) => {
             history.push("/account");
-            if(user.user){
-              dispatch(connectUserWithDB({id:user.user.uid}))
+            if (user.user) {
+              dispatch(connectUserWithDB({ id: user.user.uid }));
             }
             dispatch(toogleLoginModal());
-          }).catch((err) => {
+          })
+          .catch((err) => {
             if (err.code === "auth/email-already-in-use") {
               setErrorMessage("Email already in use");
               setError(true);
@@ -48,13 +51,16 @@ const LoginForm: React.FC<Props> = ({ text, type }) => {
             }
           });
       } else {
-        auth.signInWithEmailAndPassword(
+        auth
+          .signInWithEmailAndPassword(
             emailRef.current.value,
             passwordRef.current.value
-          ).then(() => {
+          )
+          .then(() => {
             history.push("/account");
             dispatch(toogleLoginModal());
-          }).catch(() => {
+          })
+          .catch(() => {
             setErrorMessage("Wrong Email or Password");
             setError(true);
             setLoading(false);

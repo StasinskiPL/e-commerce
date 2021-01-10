@@ -32,7 +32,7 @@
     @include tableWidth() {
       left: initial;
       right: 20px;
-    text-align: initial;
+      text-align: initial;
 
     }
 
@@ -50,11 +50,13 @@
     display: flex;
     padding: 0.25rem 1rem 0 1rem;
     justify-content: space-between;
+
     button {
       color: white;
       background-color: $color-main;
       padding: 0.5rem 1rem;
-      &:disabled{
+
+      &:disabled {
         cursor: not-allowed;
         opacity: 0.7;
       }

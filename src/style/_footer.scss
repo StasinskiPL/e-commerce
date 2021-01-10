@@ -1,8 +1,35 @@
-.footer{
+.footer {
     min-height: 300px;
     margin-top: 5rem;
     background-color: $color-dark-white;
-    &__inner{
+
+    &__inner {
+        padding: 2rem;
         @include maxWidth;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    &__links {
+        padding: 1rem 2.5rem;
+
+        &-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+    }
+
+    &__link {
+        list-style: none;
+        padding: 0.125rem;
+        text-align: center;
+
+        a {
+            @include mainColorOnHover;
+        }
+
+
     }
 }

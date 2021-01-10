@@ -18,9 +18,7 @@ export interface SingleTransation {
 }
 
 const Account = () => {
-  const [userTransation, setUserTransation] = useState<
-    SingleTransation[] | null
-  >(null);
+  const [userTransation, setUserTransation] = useState<SingleTransation[] | null>(null);
   const [refresh, setRefresh] = useState<boolean>(false);
   const history = useHistory();
 
@@ -58,7 +56,7 @@ const Account = () => {
           <div className="account__transations">
             <div className="account__transations-title">
               <h1>Your Purchase History</h1>
-              <button onClick={() => setRefresh(e=> !e)}>
+              <button onClick={() => setRefresh((e) => !e)}>
                 <HiOutlineRefresh />
               </button>
             </div>

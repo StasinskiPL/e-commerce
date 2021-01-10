@@ -1,7 +1,7 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../store/store";
-import { toogleShowCart} from "../store/cartSlice";
+import { RootState } from "../../store/store";
+import { toogleShowCart } from "../../store/cartSlice";
 import CartItem from "./CartItem";
 import CartPurchaseBtn from "./CartPurchaseBtn";
 
@@ -20,11 +20,10 @@ const Cart = () => {
     return null;
   }
 
-
   return (
-    <div className="cart" onClick={()=>dispatch(toogleShowCart())}>
+    <div className="cart" onClick={() => dispatch(toogleShowCart())}>
       <div className="cart-wrapper">
-        <div className="cart-inner"  onClick={(e)=>e.stopPropagation()}>
+        <div className="cart-inner" onClick={(e) => e.stopPropagation()}>
           <div className="cart__body">
             {products.map((prod) => (
               <CartItem
@@ -41,7 +40,7 @@ const Cart = () => {
                 Total: <span>{totalPrice}</span> $
               </h2>
             </div>
-             <CartPurchaseBtn/>
+            <CartPurchaseBtn />
           </div>
         </div>
       </div>

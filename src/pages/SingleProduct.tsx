@@ -7,50 +7,58 @@ import ProductInfo from "../components/SingleProduct/ProductInfo";
 import { Product } from "../types";
 
 interface Param {
-    id: string;
+  id: string;
 }
 
 const SingleProduct = () => {
-    const [loading, setLoading] = useState<boolean>(true);
-    const [product, setProduct] = useState<Product>(null!);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
+  const [product, setProduct] = useState<Product>(null!);
 
-    const { id }: Param = useParams();
+  const { id }: Param = useParams();
 
-    useEffect(() => {
-        setLoading(true);
-        axios
-            .get(`https://ds-ecommers.herokuapp.com/product/${id}`)
-            .then((data) => {
-                if (data.data.product) {
-                    setProduct(data.data.product);
-                    setLoading(false);
-                } else {
-                    // error handling
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, [id]);
+  useEffect(() => {
+    setLoading(true);
+    setError(false);
+    axios
+      .get(`https://ds-ecommers.herokuapp.com/product/${id}`)
+      .then((data) => {
+        if (data.data.product) {
+          setProduct(data.data.product);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
+  }, [id]);
 
-    if (loading) {
-        return (
-            <section className="singleProd singleProd-loading">
-                    <Loading/>
-            </section>
-        );
-    }
+  if (loading) {
     return (
-        <section className="singleProd">
-            <div className="singleProd-inner">
-                <Images
-                    mainImage={product.mainImage}
-                    additionImages={product.additionalImages}
-                />
-                <ProductInfo product={product}/>
-            </div>
-        </section>
+      <section className="singleProd singleProd-loading">
+        <Loading />
+      </section>
     );
+  }
+  if (error) {
+    return (
+      <section className="singleProd singleProd-loading">
+        <h1>Unfortunately, We couldn't find this product in our store </h1>
+      </section>
+    );
+  }
+  return (
+    <section className="singleProd">
+      <div className="singleProd-inner">
+        <Images
+          mainImage={product.mainImage}
+          additionImages={product.additionalImages}
+        />
+        <ProductInfo product={product} />
+      </div>
+    </section>
+  );
 };
 
 export default SingleProduct;

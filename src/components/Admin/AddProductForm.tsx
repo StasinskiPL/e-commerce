@@ -1,10 +1,12 @@
-import { useState, useRef, FormEvent } from "react";
+import { useState, useRef, FormEvent, useEffect } from "react";
 import { postProducts } from "../../store/productsSlice";
 import { useDispatch } from "react-redux";
 import { Product } from "../../types";
 import categories from "../../assets/data/categories";
+import { auth } from "../../firebase";
 
 const AddProductForm = () => {
+  const form = useRef<HTMLFormElement>(null!);
   const name = useRef<HTMLInputElement>(null!);
   const description = useRef<HTMLTextAreaElement>(null!);
   const category = useRef<HTMLSelectElement>(null!);
@@ -18,17 +20,24 @@ const AddProductForm = () => {
   const [descriptionError, setDescriptionError] = useState<boolean>(false);
   const [imageError, setImageError] = useState<boolean>(false);
   const [priceError, setPriceError] = useState<boolean>(false);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (auth.currentUser && auth.currentUser.email === "dawid1@gmail.com") {
+      setIsAdmin(true);
+    }
+  }, []);
 
   const addProductHandler = (e: FormEvent) => {
     e.preventDefault();
     if (
-      name.current.value.trim() !== "" &&
-      description.current.value.trim() !== "" &&
+      name.current.value.trim() &&
+      description.current.value.trim() &&
       category.current.value &&
-      image.current.value.trim() !== "" &&
-      price.current.value.toString().trim() !== ""
+      image.current.value.trim() &&
+      price.current.value.toString().trim()
     ) {
       const additionalImages: string[] = [];
       additionImages1.current.value &&
@@ -46,30 +55,29 @@ const AddProductForm = () => {
         price: +price.current.value,
         additionalImages: additionalImages,
       };
-      dispatch(postProducts(prod));
-      name.current.value = "";
-      description.current.value = "";
-      image.current.value = "";
-      price.current.value = "";
-      additionImages1.current.value = "";
-      additionImages2.current.value = "";
-      additionImages3.current.value = "";
+      if (auth.currentUser && auth.currentUser.email === "dawid1@gmail.com") {
+        dispatch(postProducts(prod));
+      }
+      form.current.reset();
       setNameError(false);
       setDescriptionError(false);
       setPriceError(false);
-      setNameError(false);
+      setImageError(false);
     } else {
-      name.current.value || setNameError(true);
-      description.current.value || setDescriptionError(true);
-      price.current.value || setPriceError(true);
-      image.current.value || setImageError(true);
+      name.current.value ? setNameError(false) : setNameError(true);
+      description.current.value
+        ? setDescriptionError(false)
+        : setDescriptionError(true);
+      price.current.value ? setPriceError(false) : setPriceError(true);
+      image.current.value ? setImageError(false) : setImageError(true);
     }
-    name.current.value || setNameError(true);
-    console.log(name.current.value || "null");
   };
-  console.log(nameError);
   return (
-    <form className="admin__addForm" onSubmit={(e) => addProductHandler(e)}>
+    <form
+      ref={form}
+      className="admin__addForm"
+      onSubmit={(e) => addProductHandler(e)}
+    >
       <label className={`${nameError && "admin-error"}`} htmlFor="name">
         Name:
       </label>
@@ -106,7 +114,12 @@ const AddProductForm = () => {
       <input ref={additionImages2} name="additionalImg" type="text" />
       <input ref={additionImages3} name="additionalImg" type="text" />
 
-      <button className="admin__addForm-btn" type="submit">
+      <button
+        className="admin__addForm-btn"
+        title="You aren't Admin"
+        disabled={!isAdmin}
+        type="submit"
+      >
         Submit
       </button>
     </form>
