@@ -17,7 +17,7 @@ export const loginText: LoginModalText = {
   body: "sign in",
   footer: {
     text: "Don't have an account?",
-    toggle: "Sing Up",
+    toggle: "Sign Up",
   },
 };
 export const registrationText: LoginModalText = {
@@ -25,7 +25,7 @@ export const registrationText: LoginModalText = {
   body: "sign Up",
   footer: {
     text: "Have an account?",
-    toggle: "Sing In",
+    toggle: "Sign In",
   },
 };
 

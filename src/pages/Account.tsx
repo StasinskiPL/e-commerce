@@ -35,7 +35,11 @@ const Account = () => {
           },
         })
         .then((data) => {
-          setUserTransation(data.data.user.transations);
+          if(data.data.user){
+            setUserTransation(data.data.user.transations);
+          }else{
+            setUserTransation([]);
+          }
         });
     }
   }, [user, history, refresh]);
