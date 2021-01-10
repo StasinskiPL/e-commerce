@@ -5,7 +5,7 @@ import { Product } from "../types";
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
-    const response = await fetch("http://ds-ecommers.herokuapp.com/products");
+    const response = await fetch("https://ds-ecommers.herokuapp.com/products");
     return await response.json();
   }
 );
@@ -13,7 +13,7 @@ export const fetchProducts = createAsyncThunk(
 export const postProducts = createAsyncThunk(
   "product/postProduct",
   (prod: Product) => {
-    axios.post("http://ds-ecommers.herokuapp.com/addproduct", { ...prod });
+    axios.post("https://ds-ecommers.herokuapp.com/addproduct", { ...prod });
   }
 );
 

@@ -31,7 +31,7 @@ const loginSlice = createSlice({
       state.showLoginModal = !state.showLoginModal;
     },
     connectUserWithDB: (state, { payload }: PayloadAction<{ id: string }>) => {
-      axios.post("http://ds-ecommers.herokuapp.com/connectUser", {
+      axios.post("https://ds-ecommers.herokuapp.com/connectUser", {
         id: payload.id,
       });
       return state;
