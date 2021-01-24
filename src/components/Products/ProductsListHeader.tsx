@@ -9,16 +9,17 @@ enum Sort {
 }
 
 interface Props {
-  allProduct: Product[];
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
-const ProductsListHeader: React.FC<Props> = ({ allProduct, setProducts }) => {
+const ProductsListHeader: React.FC<Props> = ({ setProducts }) => {
   const [sortType, setSortType] = useState<string>(Sort.recommened.toString());
 
   useEffect(() => {
     if (sortType === Sort.recommened.toString()) {
-      setProducts(allProduct);
+      setProducts((products) =>
+        products.slice().sort(() => Math.random() - 0.5)
+      );
     }
     if (sortType === Sort.priceUp.toString()) {
       setProducts((products) =>
@@ -38,7 +39,7 @@ const ProductsListHeader: React.FC<Props> = ({ allProduct, setProducts }) => {
         })
       );
     }
-  }, [sortType, setProducts, allProduct]);
+  }, [sortType, setProducts]);
   return (
     <div className="products__header">
       <div className="products__header-inner">

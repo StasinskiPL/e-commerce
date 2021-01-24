@@ -45,7 +45,7 @@ const ProductsList = () => {
 
   return (
     <section className="products">
-      <ProductsListHeader allProduct={allProduct} setProducts={setProducts} />
+      <ProductsListHeader  setProducts={setProducts} />
       <div className="products-inner">{renderProd}</div>
     </section>
   );
