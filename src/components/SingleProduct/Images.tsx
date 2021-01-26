@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ImgModal from "./ImgModal";
 import SingleImage from "./SingleImage";
 
 interface Props {
@@ -8,9 +9,11 @@ interface Props {
 
 const Images: React.FC<Props> = ({ mainImage, additionImages }) => {
   const [image, setImage] = useState<string>(mainImage);
+  const [showBigImage, setShowBigImage] = useState<boolean>(false);
   return (
+    <>
     <div>
-      <div className="singleProd__mainImg-wrapper">
+      <div onClick={()=>setShowBigImage(true)} className="singleProd__mainImg-wrapper">
         <img loading="lazy" src={image} alt="bigImage" />
       </div>
       <div className="singleProd__images-list">
@@ -20,6 +23,10 @@ const Images: React.FC<Props> = ({ mainImage, additionImages }) => {
         ))}
       </div>
     </div>
+    {showBigImage &&
+    <ImgModal setShowBigImage={setShowBigImage} additionImages={additionImages.concat(mainImage)} img={image} />
+    }
+    </>
   );
 };
 

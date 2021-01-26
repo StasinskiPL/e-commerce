@@ -35,6 +35,7 @@
     &__mainImg-wrapper {
         width: 100%;
         height: 350px;
+        cursor: pointer;
 
         @include mediumWidth() {
             height: 400px;
@@ -114,3 +115,65 @@
         }
     }
 }
+
+.bigImage{
+        z-index: 100;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(#000,0.5);
+        animation: show 0.3s;
+
+        &-inner{
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            img{
+                max-width: 80vw;
+                max-height: 90vh;
+            }    
+        }
+        &-imgWrapper{
+            position: relative;
+            &-icon{
+                padding: 0.5rem;
+                width: 70px;
+                height: 50px;
+                font-size: 2rem;
+                position: absolute;
+                cursor: pointer;
+                top: 110%;
+                transition: all 0.3s;
+                @include mediumWidth{
+                    top: 50%;
+
+                }
+            &.left{
+                left:0px;
+
+                @include mediumWidth{
+                    left:-70px;
+
+                }
+            } 
+            &.right{
+                right:0px;
+                @include mediumWidth{
+                right:-70px;
+                    
+                }
+            }    
+            }
+            
+        }
+    }
+    @keyframes show{
+        from{
+            opacity: 0.3;
+        }
+        to{
+            opacity: 1;
+        }
+    }
