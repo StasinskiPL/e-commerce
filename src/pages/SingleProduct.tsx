@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import Images from "../components/SingleProduct/Images";
 import ProductInfo from "../components/SingleProduct/ProductInfo";
+import useBrowsingHistory from "../hooks/useBrowsingHistory";
 import { Product } from "../types";
 
 interface Param {
@@ -14,6 +15,7 @@ const SingleProduct = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [product, setProduct] = useState<Product>(null!);
+  const { addProductToHistory,  } = useBrowsingHistory();
 
   const { id }: Param = useParams();
 
@@ -34,6 +36,12 @@ const SingleProduct = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    if (product) {
+      addProductToHistory(product);
+    }
+  });
+
   if (loading) {
     return (
       <section className="singleProd singleProd-loading">
@@ -50,12 +58,14 @@ const SingleProduct = () => {
   }
   return (
     <section className="singleProd">
-      <div className="singleProd-inner">
-        <Images
-          mainImage={product.mainImage}
-          additionImages={product.additionalImages}
-        />
-        <ProductInfo product={product} />
+      <div className="singleProd-wrapper">
+        <div className="singleProd-inner">
+          <Images
+            mainImage={product.mainImage}
+            additionImages={product.additionalImages}
+          />
+          <ProductInfo product={product} />
+        </div>
       </div>
     </section>
   );

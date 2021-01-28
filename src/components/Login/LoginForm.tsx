@@ -25,48 +25,48 @@ const LoginForm: React.FC<Props> = ({ text, type }) => {
     setError(false);
     setLoading(true);
 
-    if (passwordRef.current.value.replaceAll(" ", "").length < 6) {
-      setErrorMessage("Your password should contains at least 6 characters");
-      setError(true);
-      setLoading(false);
-    } else {
-      if (type === LoginType.registration) {
-        auth
-          .createUserWithEmailAndPassword(
-            emailRef.current.value,
-            passwordRef.current.value.replaceAll(" ", "")
-          )
-          .then((user) => {
-            history.push("/account");
-            if (user.user) {
-              dispatch(connectUserWithDB({ id: user.user.uid }));
-            }
-            dispatch(toogleLoginModal());
-          })
-          .catch((err) => {
-            if (err.code === "auth/email-already-in-use") {
-              setErrorMessage("Email already in use");
-              setError(true);
-              setLoading(false);
-            }
-          });
-      } else {
-        auth
-          .signInWithEmailAndPassword(
-            emailRef.current.value,
-            passwordRef.current.value
-          )
-          .then(() => {
-            history.push("/account");
-            dispatch(toogleLoginModal());
-          })
-          .catch(() => {
-            setErrorMessage("Wrong Email or Password");
+    if (type === LoginType.registration) {
+      if (passwordRef.current.value.replaceAll(" ", "").length < 6) {
+        setErrorMessage("Your password should contains at least 6 characters");
+        setError(true);
+        setLoading(false);
+      }
+      auth
+        .createUserWithEmailAndPassword(
+          emailRef.current.value,
+          passwordRef.current.value.replaceAll(" ", "")
+        )
+        .then((user) => {
+          history.push("/account");
+          if (user.user) {
+            dispatch(connectUserWithDB({ id: user.user.uid }));
+          }
+          dispatch(toogleLoginModal());
+        })
+        .catch((err) => {
+          if (err.code === "auth/email-already-in-use") {
+            setErrorMessage("Email already in use");
             setError(true);
             setLoading(false);
-          });
-      }
+          }
+        });
+    } else {
+      auth
+        .signInWithEmailAndPassword(
+          emailRef.current.value,
+          passwordRef.current.value
+        )
+        .then(() => {
+          history.push("/account");
+          dispatch(toogleLoginModal());
+        })
+        .catch(() => {
+          setErrorMessage("Wrong Email or Password");
+          setError(true);
+          setLoading(false);
+        });
     }
+
     emailRef.current.value = "";
     passwordRef.current.value = "";
   };

@@ -11,13 +11,17 @@
         height: 100%;
         text-align: center;
     }
-
-    &-inner {
+    &-wrapper{
         padding: 1rem 0.5rem;
         @include maxWidth;
+        width: 100%;
+    }
+
+    &-inner {
         display: grid;
         gap: 2rem;
         width: 100%;
+        margin-bottom: 7rem;
 
         @include mediumWidth() {
             grid-template-columns: 1fr 1fr;
