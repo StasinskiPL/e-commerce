@@ -16,6 +16,7 @@ const ProductsList = () => {
   const { search } = useLocation();
   const { category }: Category = useParams();
 
+
   useEffect(() => {
     if (allProduct !== []) {
       if (category.toLowerCase() !== "all") {
@@ -45,8 +46,10 @@ const ProductsList = () => {
 
   return (
     <section className="products">
-      <ProductsListHeader  setProducts={setProducts} />
-      <div className="products-inner">{renderProd}</div>
+      <ProductsListHeader setProducts={setProducts} />
+      <div className="products-inner">
+        <div className="products-inner-list">{renderProd}</div>
+      </div>
     </section>
   );
 };

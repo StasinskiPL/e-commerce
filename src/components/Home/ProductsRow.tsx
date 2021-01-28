@@ -1,6 +1,11 @@
 import React from "react";
-import { Product } from "../../types";
 import ProductsRowItem from "./ProductsRowItem";
+
+export interface Product {
+  name: string;
+  mainImage: string;
+  _id?: string;
+}
 
 interface Props {
   products: Product[];

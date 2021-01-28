@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
-import { ProductProps } from "../../types";
 
-const ProductsRowItem: React.FC<ProductProps> = ({ product }) => {
+export interface Product {
+  product:{
+    name: string;
+    mainImage: string;
+    _id?: string;
+  }
+}
+
+const ProductsRowItem: React.FC<Product> = ({ product }) => {
   const { mainImage, name, _id } = product;
   return (
     <article className="productRow">

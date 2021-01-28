@@ -28,11 +28,15 @@
     }
 
     &-inner {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
+       
         @include maxWidth;
         margin-top: 2rem;
+        &-list{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 5rem;
+        }
 
         &-noMatch {
             margin-top: 2rem;
