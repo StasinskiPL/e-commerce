@@ -25,7 +25,7 @@ const CartPurchaseBtn = ({total}:{total:number}) => {
       axios.post("https://secure.snd.payu.com/api/v2_1/orders", {
         notifyUrl: "https://ds-ecommerce.netlify.app/account",
         customerIp: "127.0.0.1",
-        merchantPosId: "300746",
+        merchantPosId: "403246",
         description: "RTV market",
         currencyCode: "PLN",
         totalAmount: total*100,
@@ -39,7 +39,7 @@ const CartPurchaseBtn = ({total}:{total:number}) => {
         products: products
       },{
         headers:{
-          Authorization: "Bearer d9a4536e-62ba-4f60-8017-6053211d3f47",
+          Authorization: "Bearer e9c2db1836df59d1094ec34fd18ad611",
           ContentType: "application/json",
 
         }
