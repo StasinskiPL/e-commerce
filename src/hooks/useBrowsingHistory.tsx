@@ -19,14 +19,10 @@ const addProducts = async (prod: Product, products: Product[]) => {
     (prod: Product) => prod._id === newProd._id
   );
 
-  console.log(prodIndex);
-
   if (prodIndex !== -1) {
 
     newProdList.splice(prodIndex, 1);
-    console.log('-2');
   }
-  console.log(newProdList);
 
   newProdList.unshift(newProd);
   if (newProdList.length > 6) {
@@ -34,7 +30,6 @@ const addProducts = async (prod: Product, products: Product[]) => {
   }
 
   await localStorage.setItem("history", JSON.stringify(newProdList));
-  console.log("done");
   return { prevProd: newProd, newProductList: newProdList };
 };
 

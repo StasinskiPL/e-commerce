@@ -40,7 +40,7 @@ const Cart = () => {
                 Total: <span>{totalPrice}</span> $
               </h2>
             </div>
-            <CartPurchaseBtn />
+            <CartPurchaseBtn total={total} />
           </div>
         </div>
       </div>

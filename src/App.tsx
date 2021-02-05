@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { Route, Switch, useLocation, Redirect } from "react-router-dom";
 import Cart from "./components/Cart/Cart";
 import Footer from "./components/Footer/Footer";
-import Loading from "./components/Loading";
+import Loading from "./components/Ui/Loading";
 import LoginModal from "./components/Login/LoginModal";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home";

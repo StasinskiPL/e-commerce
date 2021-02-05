@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SingleTransation } from "../pages/Account";
+import { SingleTransation } from "../../pages/Account";
 import { Link } from "react-router-dom";
 import { FaArrowDown } from "react-icons/fa";
 

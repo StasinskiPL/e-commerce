@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { auth } from "../../firebase";
 import { toogleLoginModal, connectUserWithDB } from "../../store/loginSlice";
-import Loading from "../Loading";
+import Loading from "../Ui/Loading";
 import { LoginType } from "./loginData";
 
 interface Props {

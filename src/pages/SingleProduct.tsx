@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Loading from "../components/Loading";
+import Loading from "../components/Ui/Loading";
 import Images from "../components/SingleProduct/Images";
 import ProductInfo from "../components/SingleProduct/ProductInfo";
 import useBrowsingHistory from "../hooks/useBrowsingHistory";

@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { auth } from "../firebase";
 import { HiOutlineRefresh } from "react-icons/hi";
 import axios from "axios";
-import UserTransation from "../components/UserTransation";
+import UserTransation from "../components/Account/UserTransation";
 
 export interface TransationProduct {
   name: string;

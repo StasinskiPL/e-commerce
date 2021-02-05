@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import {Link} from "react-router-dom"; 
-import Loading from "../Loading";
+import Loading from "../Ui/Loading";
 
 const DailySale = () => {
   const product = useSelector((state: RootState) => state.products.products[0]);
