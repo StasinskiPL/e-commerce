@@ -19,10 +19,12 @@ export const postProducts = createAsyncThunk(
 
 interface State {
   products: Product[];
+  loadingState: "idle" | "pending" | "fetched";
 }
 
 const initialState: State = {
   products: [],
+  loadingState: "idle",
 };
 
 const productsSlide = createSlice({
@@ -30,8 +32,12 @@ const productsSlide = createSlice({
   name: "products",
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(fetchProducts.pending, (state) => {
+      state.loadingState = "pending";
+    });
     builder.addCase(fetchProducts.fulfilled, (state, { payload }) => {
       state.products.push(...payload.products);
+      state.loadingState = "fetched";
     });
   },
 });

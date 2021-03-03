@@ -5,6 +5,7 @@ import { Product } from "../types";
 import { RootState } from "../store/store";
 import ProductCard from "../components/Products/ProductCard";
 import ProductsListHeader from "../components/Products/ProductsListHeader";
+import Loading from "../components/Ui/Loading";
 
 interface Category {
   category: string;
@@ -12,10 +13,11 @@ interface Category {
 
 const ProductsList = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const allProduct = useSelector((state: RootState) => state.products.products);
+  const { products: allProduct, loadingState } = useSelector(
+    (state: RootState) => state.products
+  );
   const { search } = useLocation();
   const { category }: Category = useParams();
-
 
   useEffect(() => {
     if (allProduct !== []) {
@@ -35,7 +37,12 @@ const ProductsList = () => {
     }
   }, [allProduct, category, search]);
 
+  if (loadingState === "pending") {
+    return <Loading />;
+  }
+
   let renderProd = null;
+
   if (products.length > 0) {
     renderProd = products.map((prod, index) => (
       <ProductCard product={prod} key={index} />
