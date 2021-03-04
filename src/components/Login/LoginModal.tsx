@@ -4,7 +4,6 @@ import { toogleLoginModal } from "../../store/loginSlice";
 import { RootState } from "../../store/store";
 import { FaTimes } from "react-icons/fa";
 import LoginForm from "./LoginForm";
-import { auth } from "../../firebase";
 import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -15,8 +14,8 @@ import {
 } from "./loginData";
 
 const LoginModal = () => {
-  const showModal = useSelector(
-    (state: RootState) => state.login.showLoginModal
+  const { showLoginModal, isLogin } = useSelector(
+    (state: RootState) => state.login
   );
   const dispatch = useDispatch();
   const [type, setType] = useState<LoginType>(LoginType.login);
@@ -32,8 +31,8 @@ const LoginModal = () => {
   }, [type]);
 
   useEffect(() => {
-    if (showModal) {
-      if (auth.currentUser) {
+    if (showLoginModal) {
+      if (isLogin) {
         history.push("/account");
       } else {
         document.body.style.overflow = "hidden";
@@ -41,7 +40,7 @@ const LoginModal = () => {
     } else {
       document.body.style.overflow = "initial";
     }
-  }, [showModal, history]);
+  }, [showLoginModal, history, isLogin]);
 
   const toggleType = () => {
     if (type === LoginType.login) {
@@ -51,7 +50,7 @@ const LoginModal = () => {
     }
   };
 
-  if (!showModal || auth.currentUser) {
+  if (!showLoginModal || isLogin) {
     return null;
   }
 
@@ -59,14 +58,12 @@ const LoginModal = () => {
     <motion.div
       className="login"
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-    >
+      animate={{ opacity: 1 }}>
       <motion.div
         className="login-wrapper"
         initial={{ y: -70, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ ease: "easeInOut", duration: 0.3 }}
-      >
+        transition={{ ease: "easeInOut", duration: 0.3 }}>
         <div className="login-inner">
           {/* header */}
           <div className="login__header">

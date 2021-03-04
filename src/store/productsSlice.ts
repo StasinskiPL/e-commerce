@@ -1,19 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import server from "../api/server";
+
 import { Product } from "../types";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
-    const response = await fetch("https://ds-ecommers.herokuapp.com/products");
-    return await response.json();
+    const { data } = await server.get("/products");
+    return data;
   }
 );
 
 export const postProducts = createAsyncThunk(
   "product/postProduct",
   (prod: Product) => {
-    axios.post("https://ds-ecommers.herokuapp.com/addproduct", { ...prod });
+    server.post("/addproduct", { ...prod });
   }
 );
 
