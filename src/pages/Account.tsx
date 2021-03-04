@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { auth } from "../firebase";
 import { HiOutlineRefresh } from "react-icons/hi";
-import axios from "axios";
 import UserTransation from "../components/Account/UserTransation";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import { logout, toogleLoginModal } from "../store/loginSlice";
+import server from "../api/server";
 
 export interface TransationProduct {
   name: string;
@@ -18,34 +20,42 @@ export interface SingleTransation {
 }
 
 const Account = () => {
-  const [userTransation, setUserTransation] = useState<SingleTransation[] | null>(null);
+  const [userTransation, setUserTransation] = useState<
+    SingleTransation[] | null
+  >(null);
   const [refresh, setRefresh] = useState<boolean>(false);
+  const { isLogin, showLoginModal, token } = useSelector(
+    (state: RootState) => state.login
+  );
   const history = useHistory();
-
-  const user = auth.currentUser;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!user) {
+    if (!isLogin) {
       history.push("/");
     } else {
-      axios
-        .get("https://ds-ecommers.herokuapp.com/getuserstore", {
-          params: {
-            id: user.uid,
+      if (showLoginModal) {
+        dispatch(toogleLoginModal());
+      }
+      server
+        .get("/getuserstore", {
+          headers: {
+            authorization: `Bearer ${token}`,
           },
         })
-        .then((data) => {
-          if(data.data.user){
-            setUserTransation(data.data.user.transations);
-          }else{
+        .then(({ data }) => {
+          if (data.user) {
+            setUserTransation(data.user.transations);
+          } else {
             setUserTransation([]);
           }
-        });
+        })
+        .catch((e) => console.log(e));
     }
-  }, [user, history, refresh]);
+  }, [isLogin, history, refresh, dispatch, showLoginModal, token]);
 
   const logOutHandler = () => {
-    auth.signOut();
+    dispatch(logout());
     history.push("/");
   };
   return (

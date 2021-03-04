@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { postProducts } from "../../store/productsSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Product } from "../../types";
 import categories from "../../assets/data/categories";
-import { auth } from "../../firebase";
+import { RootState } from "../../store/store";
 
 interface FormTypes {
   name: string;
@@ -34,6 +34,8 @@ const AddProductForm = () => {
   const form = useRef<HTMLFormElement>(null!);
   const dispatch = useDispatch();
 
+  const { isLogin, user } = useSelector((state: RootState) => state.login);
+
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
@@ -53,7 +55,11 @@ const AddProductForm = () => {
       mainImage: data.image,
       additionalImages: additionalImages,
     };
-    if (auth.currentUser && auth.currentUser.email === "dawid1@gmail.com") {
+    if (
+      isLogin &&
+      typeof user === "object" &&
+      user.email === "dawid1@gmail.com"
+    ) {
       dispatch(postProducts(prod));
     }
     form.current.reset();
@@ -63,8 +69,7 @@ const AddProductForm = () => {
     <form
       ref={form}
       className="admin__addForm"
-      onSubmit={handleSubmit(addProductHandler)}
-    >
+      onSubmit={handleSubmit(addProductHandler)}>
       <label className={`${errors.name && "admin-error"}`} htmlFor="name">
         Name:
       </label>
@@ -105,8 +110,7 @@ const AddProductForm = () => {
         className="admin__addForm-btn"
         title="You aren't Admin"
         disabled
-        type="submit"
-      >
+        type="submit">
         Submit
       </button>
     </form>

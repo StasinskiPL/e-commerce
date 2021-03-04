@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { rejects } from "assert";
+import server from "../api/server";
 
 export enum UserStatur {
   Admin = "ADMIN",
@@ -8,20 +9,47 @@ export enum UserStatur {
 }
 
 interface InitialStateInterface {
-  user:
-    | {
-        email: string;
-        id: string;
-        type: Omit<UserStatur, UserStatur.Anonymous>;
-      }
-    | UserStatur.Anonymous;
   showLoginModal: boolean;
+  isLogin: Boolean;
+  token: null | string;
+  fetchLoginState: "idle" | "pending" | "fetched";
+  errorMessage: string | null;
 }
 
 const initialState: InitialStateInterface = {
-  user: UserStatur.Anonymous,
   showLoginModal: false,
+  isLogin: false,
+  token: null,
+  fetchLoginState: "idle",
+  errorMessage: null,
 };
+
+export const loginUser = createAsyncThunk(
+  "user/login",
+  async ({ email, password }: { email: string; password: string }) => {
+    const { data } = await server.post("/user/login", {
+      email,
+      password,
+    });
+    return data;
+  }
+);
+
+export const registerUser = createAsyncThunk(
+  "user/register",
+  async ({ email, password }: { email: string; password: string }) => {
+    try {
+      const { data } = await server.post("/user/register", {
+        email,
+        password,
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
+  }
+);
 
 const loginSlice = createSlice({
   name: "user",
@@ -30,15 +58,41 @@ const loginSlice = createSlice({
     toogleLoginModal: (state) => {
       state.showLoginModal = !state.showLoginModal;
     },
-    connectUserWithDB: (state, { payload }: PayloadAction<{ id: string }>) => {
-      axios.post("https://ds-ecommers.herokuapp.com/connectUser", {
-        id: payload.id,
-      });
-      return state;
+    logout: (state) => {
+      state.token = null;
+      state.isLogin = false;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loginUser.pending, (state) => {
+      state.fetchLoginState = "pending";
+    });
+    builder.addCase(loginUser.fulfilled, (state, { payload }) => {
+      state.isLogin = true;
+      state.fetchLoginState = "fetched";
+      state.token = payload.token;
+    });
+    builder.addCase(loginUser.rejected, (state) => {
+      state.fetchLoginState = "idle";
+      state.errorMessage = "Wrong Email or Password";
+    });
+
+    builder.addCase(registerUser.pending, (state) => {
+      state.fetchLoginState = "pending";
+    });
+    builder.addCase(registerUser.fulfilled, (state, { payload }) => {
+      state.isLogin = true;
+      state.fetchLoginState = "fetched";
+      state.token = payload.token;
+    });
+    builder.addCase(registerUser.rejected, (state, action) => {
+      console.log(action);
+      state.fetchLoginState = "idle";
+      state.errorMessage = "Email already exist";
+    });
   },
 });
 
-export const { toogleLoginModal, connectUserWithDB } = loginSlice.actions;
+export const { toogleLoginModal, logout } = loginSlice.actions;
 
 export default loginSlice.reducer;

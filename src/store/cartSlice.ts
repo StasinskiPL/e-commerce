@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import server from "../api/server";
 import { Product } from "../types";
 
 interface CartProducts {
@@ -22,7 +23,7 @@ export const postTransation = createAsyncThunk(
   "cart/postTransation",
   async (id: string, { getState }) => {
     const { cart } = getState() as { cart: { cartProducts: CartProducts[] } };
-    axios.post("https://ds-ecommers.herokuapp.com/addtransation", {
+    server.post("/addtransation", {
       id: id,
       transation: cart.cartProducts.map((item) => ({
         name: item.product.name,
