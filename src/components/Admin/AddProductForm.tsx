@@ -2,9 +2,9 @@ import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { postProducts } from "../../store/productsSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { Product } from "../../types";
+import { useSelector } from "react-redux";
+// import { postProducts } from "../../store/productsSlice";
+// import { Product } from "../../types";
 import categories from "../../assets/data/categories";
 import { RootState } from "../../store/store";
 
@@ -32,35 +32,31 @@ let schema = yup.object().shape({
 
 const AddProductForm = () => {
   const form = useRef<HTMLFormElement>(null!);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const { isLogin, user } = useSelector((state: RootState) => state.login);
+  const { isLogin } = useSelector((state: RootState) => state.login);
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
 
   const addProductHandler = (data: FormTypes) => {
-    const additionalImages: string[] = [
-      data.additionalImg1,
-      data.additionalImg2,
-      data.additionalImg3,
-    ].filter((link) => link);
+    // const additionalImages: string[] = [
+    //   data.additionalImg1,
+    //   data.additionalImg2,
+    //   data.additionalImg3,
+    // ].filter((link) => link);
 
-    const prod: Product = {
-      name: data.name,
-      description: data.description,
-      category: data.category,
-      price: data.price,
-      mainImage: data.image,
-      additionalImages: additionalImages,
-    };
-    if (
-      isLogin &&
-      typeof user === "object" &&
-      user.email === "dawid1@gmail.com"
-    ) {
-      dispatch(postProducts(prod));
+    // const prod: Product = {
+    //   name: data.name,
+    //   description: data.description,
+    //   category: data.category,
+    //   price: data.price,
+    //   mainImage: data.image,
+    //   additionalImages: additionalImages,
+    // };
+    if (isLogin) {
+      // dispatch(postProducts(prod));
     }
     form.current.reset();
   };

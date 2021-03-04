@@ -26,11 +26,17 @@ const initialState: InitialStateInterface = {
 export const loginUser = createAsyncThunk(
   "user/login",
   async ({ email, password }: { email: string; password: string }) => {
-    const { data } = await server.post("/user/login", {
-      email,
-      password,
-    });
-    return data;
+    try {
+      console.log(email, password);
+      const { data } = await server.post("/user/login", {
+        email,
+        password,
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
   }
 );
 
@@ -44,7 +50,6 @@ export const registerUser = createAsyncThunk(
       });
       return data;
     } catch (error) {
-      console.log(error);
       throw new Error(error);
     }
   }
@@ -60,6 +65,7 @@ const loginSlice = createSlice({
     logout: (state) => {
       state.token = null;
       state.isLogin = false;
+      state.errorMessage = null;
     },
   },
   extraReducers: (builder) => {
@@ -84,8 +90,7 @@ const loginSlice = createSlice({
       state.fetchLoginState = "fetched";
       state.token = payload.token;
     });
-    builder.addCase(registerUser.rejected, (state, action) => {
-      console.log(action);
+    builder.addCase(registerUser.rejected, (state) => {
       state.fetchLoginState = "idle";
       state.errorMessage = "Email already exist";
     });
