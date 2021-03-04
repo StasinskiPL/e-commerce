@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { rejects } from "assert";
 import server from "../api/server";
 
 export enum UserStatur {

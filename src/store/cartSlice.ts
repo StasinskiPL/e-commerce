@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import server from "../api/server";
 import { Product } from "../types";
 
@@ -21,17 +20,24 @@ const initialState: InitialStateInterface = {
 
 export const postTransation = createAsyncThunk(
   "cart/postTransation",
-  async (id: string, { getState }) => {
+  async (token: string, { getState }) => {
     const { cart } = getState() as { cart: { cartProducts: CartProducts[] } };
-    server.post("/addtransation", {
-      id: id,
-      transation: cart.cartProducts.map((item) => ({
-        name: item.product.name,
-        id: item.product._id,
-        total: item.total,
-        amount: item.amount,
-      })),
-    });
+    server.post(
+      "/addtransation",
+      {
+        transation: cart.cartProducts.map((item) => ({
+          name: item.product.name,
+          id: item.product._id,
+          total: item.total,
+          amount: item.amount,
+        })),
+      },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
   }
 );
 

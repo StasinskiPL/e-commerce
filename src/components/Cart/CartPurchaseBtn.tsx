@@ -11,7 +11,7 @@ const CartPurchaseBtn = ({ total }: { total: number }) => {
   const amount = useSelector(
     (state: RootState) => state.cart.cartProducts.length
   );
-  const { isLogin } = useSelector((state: RootState) => state.login);
+  const { isLogin, token } = useSelector((state: RootState) => state.login);
   const products = useSelector(
     (state: RootState) => state.cart.cartProducts
   ).map((prod) => ({
@@ -54,10 +54,11 @@ const CartPurchaseBtn = ({ total }: { total: number }) => {
         .catch((err) => {
           console.log(err);
         });
-
-      // dispatch(postTransation(user.id));
-      history.push("/account");
-      dispatch(toogleShowCart());
+      if (token) {
+        dispatch(postTransation(token));
+        history.push("/account");
+        dispatch(toogleShowCart());
+      }
     } else {
       dispatch(toogleLoginModal());
     }

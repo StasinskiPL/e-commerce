@@ -1,12 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import server from "../../api/server";
-import {
-  loginUser,
-  registerUser,
-  toogleLoginModal,
-} from "../../store/loginSlice";
+import { loginUser, registerUser } from "../../store/loginSlice";
 import { RootState } from "../../store/store";
 import Loading from "../Ui/Loading";
 import { LoginType } from "./loginData";
