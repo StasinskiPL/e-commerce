@@ -15,14 +15,13 @@ const UserTransation: React.FC<Props> = ({ transation }) => {
   const total = products.reduce((total, item) => {
     return (total += item.total);
   }, 0);
-  
+
   return (
     <div className="transation">
       <div className="transation-inner">
         <button
           className={`transation-btn ${showTable && "showTable"} `}
-          onClick={() => setShowTable((e) => !e)}
-        >
+          onClick={() => setShowTable((e) => !e)}>
           <FaArrowDown />
         </button>
         <h2 className="transation-date">{date}</h2>

@@ -6,7 +6,11 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer__inner">
         {footerLinksList.map((footerLinks, index) => (
-          <LinkList links={footerLinks} key={index} />
+          <LinkList
+            data-testid="footer-links-list"
+            links={footerLinks}
+            key={index}
+          />
         ))}
       </div>
     </footer>
