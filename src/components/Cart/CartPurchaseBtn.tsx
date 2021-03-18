@@ -11,7 +11,7 @@ const CartPurchaseBtn = ({ total }: { total: number }) => {
   const amount = useSelector(
     (state: RootState) => state.cart.cartProducts.length
   );
-  const { isLogin, token } = useSelector((state: RootState) => state.login);
+  const { isLogin } = useSelector((state: RootState) => state.login);
   const products = useSelector(
     (state: RootState) => state.cart.cartProducts
   ).map((prod) => ({
@@ -54,8 +54,8 @@ const CartPurchaseBtn = ({ total }: { total: number }) => {
         .catch((err) => {
           console.log(err);
         });
-      if (token) {
-        dispatch(postTransation(token));
+      if (isLogin) {
+        dispatch(postTransation());
         history.push("/account");
         dispatch(toogleShowCart());
       }

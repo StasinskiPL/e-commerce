@@ -24,7 +24,7 @@ const Account = () => {
     SingleTransation[] | null
   >(null);
   const [refresh, setRefresh] = useState<boolean>(false);
-  const { isLogin, showLoginModal, token } = useSelector(
+  const { isLogin, showLoginModal } = useSelector(
     (state: RootState) => state.login
   );
   const history = useHistory();
@@ -38,11 +38,7 @@ const Account = () => {
         dispatch(toogleLoginModal());
       }
       server
-        .get("/getuserstore", {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        })
+        .get("/getuserstore", { withCredentials: true })
         .then(({ data }) => {
           if (data.user) {
             setUserTransation(data.user.transations);
@@ -52,7 +48,7 @@ const Account = () => {
         })
         .catch((e) => console.log(e));
     }
-  }, [isLogin, history, refresh, dispatch, showLoginModal, token]);
+  }, [isLogin, history, refresh, dispatch, showLoginModal]);
 
   const logOutHandler = () => {
     dispatch(logout());

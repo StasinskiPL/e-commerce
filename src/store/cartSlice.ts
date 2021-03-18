@@ -20,24 +20,16 @@ const initialState: InitialStateInterface = {
 
 export const postTransation = createAsyncThunk(
   "cart/postTransation",
-  async (token: string, { getState }) => {
+  async (_, { getState }) => {
     const { cart } = getState() as { cart: { cartProducts: CartProducts[] } };
-    server.post(
-      "/addtransation",
-      {
-        transation: cart.cartProducts.map((item) => ({
-          name: item.product.name,
-          id: item.product._id,
-          total: item.total,
-          amount: item.amount,
-        })),
-      },
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    server.post("/addtransation", {
+      transation: cart.cartProducts.map((item) => ({
+        name: item.product.name,
+        id: item.product._id,
+        total: item.total,
+        amount: item.amount,
+      })),
+    });
   }
 );
 
